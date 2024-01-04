@@ -1,0 +1,27 @@
+<!-- final-screen.component.html -->
+<div class="final-screen-container">
+  <h2>Game Statistics</h2>
+  <div>
+    <p>Total Questions: {{ totalQuestions$ | async }}</p>
+    <p>Right Answers: {{ rightAnswers$ | async }}</p>
+    <p>Success Rate: {{ successRate$ | async }}%</p>
+
+    <h2>Questions and Answers</h2>
+    <div class="answer-result" *ngFor="let result of results$ | async">
+      <p>Question: {{ result.question }}</p>
+      <br />
+      User's Answer:
+      <ng-container *ngIf="!result.isCorrect">
+        <div class="answer-option answer-option--incorrect">
+          {{ result.userAnswer }}
+        </div>
+      </ng-container>
+      <div class="answer-option answer-option--correct">
+        {{ result.correctAnswer }}
+      </div>
+    </div>
+  </div>
+  <button class="new-game" (click)="goToWelcomeScreen()">
+    Start a New Game
+  </button>
+</div>

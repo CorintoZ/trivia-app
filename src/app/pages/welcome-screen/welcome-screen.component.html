@@ -1,0 +1,29 @@
+<div class="welcome-container">
+  <h1>Welcome to the Trivia Game</h1>
+
+  <form class="welcome-form" [formGroup]="welcomeForm" (ngSubmit)="startGame()">
+    <label for="numQuestions">Number of Questions:</label>
+    <select id="numQuestions" formControlName="numQuestions">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty" formControlName="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <label for="category">Categories:</label>
+    <select id="category" formControlName="category">
+      <ng-container *ngFor="let category of triviaCategories">
+        <option [value]="category[1]">{{ category[0] }}</option>
+      </ng-container>
+    </select>
+
+    <button class="start-game" type="submit">Start Game</button>
+  </form>
+</div>
